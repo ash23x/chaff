@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "chaff"
+version = "0.1.0"
+description = "Stochastic traffic padding proxy — radar countermeasures for your network traffic"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Greg Ashley", email = "drgashley@gmail.com"},
+]
+keywords = ["privacy", "traffic-analysis", "proxy", "socks5", "network-security"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+    "Topic :: Internet :: Proxy Servers",
+]
+
+[project.scripts]
+chaff = "chaff.cli:main"
+
+[project.optional-dependencies]
+dashboard = ["nicegui>=1.4"]
+dev = ["pytest>=7.0", "pytest-asyncio>=0.21"]
+
+[project.urls]
+Homepage = "https://github.com/ash23x/chaff"
+Repository = "https://github.com/ash23x/chaff"
+Issues = "https://github.com/ash23x/chaff/issues"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
