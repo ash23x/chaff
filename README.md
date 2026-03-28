@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/banner.svg" alt="chaff — radar countermeasures for your network traffic" width="100%"/>
+</p>
+
 # chaff
 
 **Stochastic traffic padding proxy — radar countermeasures for your network traffic.**
