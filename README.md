@@ -40,6 +40,27 @@ However, in the default **null sink** mode, chaff packets are generated locally 
 
 Reflector and paired modes are specced but not yet implemented. Contributions welcome.
 
+## Roadmap to Operational
+
+v0.1 proves the concept. To get real cover on the wire, you need a **cooperative endpoint** that accepts chaff packets — because firing random noise at real servers gets you blocked, not protected.
+
+**The reflector is 12 lines of Python on a cheap VPS:**
+
+```python
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.bind(("0.0.0.0", 9999))
+while True:
+    data, addr = s.recvfrom(2048)
+    s.sendto(data, addr)
+```
+
+That's it. A ~$3/month VPS that bounces whatever you throw at it. On the wire it looks like a continuous bidirectional UDP conversation — indistinguishable from VoIP or a game session. Your real browsing traffic is buried in the Poisson noise stream to the reflector.
+
+Even better: if you already RDP into a box, run the reflector there. The chaff traffic blends into your existing RDP session — no new connections to explain.
+
+**v0.2 targets:** Reflector mode (chaff traverses the wire), connection pooling (mask TCP handshake bursts), Firefox QUIC/WebRTC hardening guidance.
+
 **What works right now:**
 - Full SOCKS5 proxy with Poisson-scheduled packet padding
 - Real traffic displaces chaff in existing Poisson slots (rate stays constant)
