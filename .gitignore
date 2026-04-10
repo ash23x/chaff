@@ -13,3 +13,8 @@ venv/
 *.log
 .mypy_cache/
 .ruff_cache/
+*.key
+*.pem
+anthropic_key*
+.DS_Store
+Thumbs.db
